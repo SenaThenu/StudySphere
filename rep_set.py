@@ -3,22 +3,17 @@ Manages all the commands regarding setting up Spaced Repetition Dates in the Stu
 """
 import requests
 import json
+import templates
 from datetime import datetime, timedelta
 
-def set_reps(endpoint_url: str, headers: dict, database_id: str, rep_intervals: list, date_format: str, main_id_name: str= "Lesson", rep_col_names: list= ["Rep 1", "Rep 2", "Rep 3"]):
-    # API endpoint to retrieve all pages (rows) in the database
-    query_url = f"{endpoint_url}/databases/{database_id}/query"
-
-    # Send a POST request to retrieve all pages
-    query_response = requests.post(query_url, headers=headers)
-
-    # Check if the request was successful
-    if query_response.status_code == 200:
-        data = query_response.json()
-        # Extract row IDs from the query_response
-        row_ids = [page["id"] for page in data["results"]]
+def set_reps(endpoint_url: str, headers: dict, database_id: str, rep_intervals: list, date_format: str, page_title_property_name: str= "Lesson", rep_col_names: list= ["Rep 1", "Rep 2", "Rep 3"]):    
+    # Extracting all the row ids of the database
+    status, row_ids = templates.get_row_ids(endpoint_url, headers, database_id)
+    if status != 200:
+        print("An error occurred! Make sure the provided Database ID is valid!")
+        return None
     else:
-        return query_response.status_code, query_response.text
+        pass
     
     # Selecting row_ids who don't have Rep Dates!
     valid_row_ids = []      # Stores all the rows which require repetition dates
@@ -28,7 +23,7 @@ def set_reps(endpoint_url: str, headers: dict, database_id: str, rep_intervals: 
         row_data = row_response.json()
         if not row_data["properties"][rep_col_names[0]]["date"]:   # This becomes true if there's no date in the val_col
             valid_row_ids.append(row_id)
-            valid_row_name = row_data["properties"][main_id_name]["title"][0]["text"]["content"]
+            valid_row_name = row_data["properties"][page_title_property_name]["title"][0]["text"]["content"]
             valid_row_names.append(valid_row_name)
         
     # Defining the current date
@@ -59,4 +54,4 @@ def set_reps(endpoint_url: str, headers: dict, database_id: str, rep_intervals: 
             print(f"Spaced Repetition Intervals were Successfully Added to {valid_row_names[valid_row_i]}!")
         else:
             print(f"An Error Occurred when Adding Repetition Dates to {valid_row_names[valid_row_i]}! :(")
-
+    return None, None

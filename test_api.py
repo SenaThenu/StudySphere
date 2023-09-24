@@ -1,6 +1,5 @@
 import requests
 import json
-import rep_set
 
 # Loading User Settings
 with open("user_settings.json", "r") as f:
@@ -24,15 +23,11 @@ DATE_FORMAT = "%Y-%m-%d"
 # Spaced-Repetition Variables
 REP_INTERVALS = user_settings["Rep-Intervals"]
 
-response = requests.get("https://api.notion.com/v1/pages/fb485f99-d039-40ce-bdd6-01f9cf38c057", headers=HEADERS)
+response = requests.get("https://api.notion.com/v1/blocks/5b42ae7bc0f74204805c2dcc07d95719/children", headers=HEADERS)
 data = response.json()
 # Extract the block data from the response
-print(data["properties"]["Rep 1"]["date"])
 with open("test.json", "w") as f:
     f.write(json.dumps(data))
-
-with open("test.json") as f:
-    data = json.load(f)
 
 
 
