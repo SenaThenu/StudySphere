@@ -1,3 +1,5 @@
 {
-    "Rep-Intervals": [7, 21, 60]
+    "Rep_Intervals": [7, 21, 60],
+    "Instructions": true,
+    "StudySphere_ID": "2428547d9c0f45c48fa0b4018fec3e54"
 }
