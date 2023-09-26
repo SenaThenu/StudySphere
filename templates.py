@@ -72,9 +72,9 @@ def get_page_title(endpoint_url:str, headers:dict, page_id:str, page_title_prope
     page_title = page_data["properties"][page_title_property_name]["title"][0]["text"]["content"]
     return page_title
 
-def get_main_branch_databases(endpoint_url, headers, parent_db_id:str) -> typing.Union[dict, None]:
+def get_child_databases(endpoint_url:str, headers:str, parent_db_id:str) -> typing.Union[dict, None]:
     """
-    ### Returns a dictionary with all the subjects in the main study database paired with their database ids.
+    ### Returns a dictionary with all the child databases in the parent database paired with their names and ids.
 
     Args:
         endpoint_url (str): e.g. https://api.notion.com/v1
@@ -82,7 +82,7 @@ def get_main_branch_databases(endpoint_url, headers, parent_db_id:str) -> typing
         parent_db_id (str): The ID of the parent database which stores all the main subjects (e.g. StudySphere)
 
     Returns:
-        dict: A dictionary with (key, value) pairs where key = subject_name and value = database_id 
+        dict: A dictionary with (key, value) pairs where key = child_database_name and value = database_id 
         __OR__
         None: When an error occurs...
     """
@@ -98,6 +98,9 @@ def get_main_branch_databases(endpoint_url, headers, parent_db_id:str) -> typing
     main_study_databases = {} # Data is stored in (key, value) pairs where key = subject name, value = database id
     for page_id in main_db_page_ids:
         inline_db_id = extract_id_of_an_inline_databases(endpoint_url, headers, page_id)
-        page_title = get_page_title(endpoint_url, headers, page_id)
-        main_study_databases[page_title] = inline_db_id
+        if inline_db_id:
+            page_title = get_page_title(endpoint_url, headers, page_id)
+            main_study_databases[page_title] = inline_db_id
+        else:
+            pass
     return main_study_databases
