@@ -7,7 +7,7 @@ with open("user_settings.json", "r") as f:
 
 # Necessary IDs
 API_KEY = "secret_TGrfvNrdwP6DmQDpbUP9QAVZFF8e4e0N1B6XTauFUP1"
-DATABASE_ID = "d80ae1e2-d91f-490d-9546-d8cbad8a6323"
+DATABASE_ID = "fb485f99d03940cebdd601f9cf38c057"
 
 # Web Request Info
 END_POINT_URL = "https://api.notion.com/v1"
@@ -25,7 +25,9 @@ REP_INTERVALS = user_settings["Rep_Intervals"]
 
 row_response = requests.get(f"{END_POINT_URL}/pages/{DATABASE_ID}", headers=HEADERS)
 row_data = row_response.json()
-print(row_data["properties"]["Rep 1"]["date"])
 
 with open("test.json", "w") as f:
     f.write(json.dumps(row_data))
+
+
+print(row_data["properties"]["Revise Rep"]["date"])
