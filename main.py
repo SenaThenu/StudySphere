@@ -1,6 +1,9 @@
 """
 This Python file connects all the bits of code to address user commands.
 """
+
+from termcolor import colored
+
 import requests
 import json
 import time
@@ -36,7 +39,20 @@ INSTRUCTIONS = user_settings["Instructions"]
 # Specifying Common CMDs
 HELP_CMDS = ["h", "help"]
 EXIT_CMDS = ["e", "exit", "q", "quit", "c", "close"]
-INCLUDE_ALL = ["", "*", "."]
+INCLUDE_ALL = ["*", "."]
+INCLUDE_NONE = ["", "n"]
+SETTINGS_CMDS = ["s", "setting", "settings"]
+SET_REP_CMDS = ["set-rep", "set-reps", "set-repetitions", "set repetitions"]
+SET_REVISION_CMDS = ["set-rev", "set-revs", "set-revision"]
+
+# Some colour variables (Use these to add terminal colours only in special occasions, e.g. printing doc-strings! Otherwise, use termcolor)
+# Define global color variables
+HEADER_COLOR = "\033[1m\033[94m"  # Bold and light blue
+RESET_COLOR = "\033[0m"  # Reset to default color
+CMD_COLOR = "\033[92m"  # Light green
+NOTE_COLOR = "\033[93m"  # Light yellow
+EMOJI_COLOR = "\033[94m"  # Light blue
+
 
 def get_command(prompt:str) -> str:
     """
@@ -51,7 +67,20 @@ def get_command(prompt:str) -> str:
     command = input(f"{prompt} ").lower().strip()
     return command
 
-def get_validated_user_input(prompt, exit_message, options, match_length=False):
+def get_validated_user_input(prompt: str, exit_message: str, help_message: str, options:list, match_length: bool=False) -> str:
+    """
+    ### Returns the validated user input for the after asking the given prompt from the user!
+
+    Args:
+        prompt (str): What to ask from the user to get the input!
+        exit_message (str): The message to display in case the user asks to leave!
+        help_message (str): Message to display if the user requires help!
+        options (list): What are the possible options for the answer. If match length is False, returns the user input if it is present in the options!
+        match_length (bool, optional): Whether the validation should be done through matching the length of an option or the user input. Defaults to False.
+
+    Returns:
+        str: The validated user input!
+    """
     valid_input = False
     while not valid_input:
         user_input = input(prompt).strip()
@@ -64,8 +93,11 @@ def get_validated_user_input(prompt, exit_message, options, match_length=False):
             print(exit_message)
             time.sleep(3)
             quit()
+        elif user_input in HELP_CMDS:
+            print(help_message)
+            continue
         else:
-            print("Oops! I don't recognize it!")
+            print(colored("Oops! 😕 I don't recognize it!", "red"))
             continue
     return user_input
 
@@ -102,12 +134,15 @@ def get_valid_dict_data(raw_dict:dict, exit_message:str, help_message:str) -> di
 
     if current_command in INCLUDE_ALL:
         return raw_dict
+    elif current_command in INCLUDE_NONE:
+        return {}
     elif current_command[:2] == "ex":
         try:
             exclude_branch_nums = current_command[2:].split(",")
             exclude_branch_nums = [int(i) for i in exclude_branch_nums]
         except:
-            print("Please make sure the exclusion list is correct!\nIf you feel stuck, ask for help(h)!")
+            print(colored("Please make sure the exclusion list is correct!", "red"))
+            print(colored("If you feel stuck, ask for help (h)!", "yellow"))
             return get_valid_dict_data(raw_dict, exit_message, help_message)
         
         for exclude_branch_num in exclude_branch_nums:
@@ -127,7 +162,8 @@ def get_valid_dict_data(raw_dict:dict, exit_message:str, help_message:str) -> di
             include_branch_nums = current_command.split(",")
             include_branch_nums = [int(i) for i in include_branch_nums]
         except:
-            print("Please make sure the inclusion list is correct!\nIf you feel stuck, ask for help(h)!")
+            print(colored("Please make sure the inclusion list is correct!", "red"))
+            print(colored("If you feel stuck, just type 'h' for help!", "yellow"))
             return get_valid_dict_data(raw_dict, exit_message, help_message)
 
         valid_dict = {}
@@ -136,7 +172,7 @@ def get_valid_dict_data(raw_dict:dict, exit_message:str, help_message:str) -> di
             valid_dict[list(raw_dict.keys())[include_branch_num-1]] = raw_dict[list(raw_dict.keys())[include_branch_num-1]]
         return valid_dict
 
-def set_reps_for_pages(database_id: str, is_revision_rep:bool, revision_date:str=None, page_title_property_name: str= "Lesson", rep_col_names: list= ["Rep 1", "Rep 2", "Rep 3"], revision_col_name:str= "Revise Rep"):
+def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_date:str=None, page_title_property_name: str= "Lesson", rep_col_names: list= ["Rep 1", "Rep 2", "Rep 3"], revision_col_name:str= "Revise Rep"):
     """
     ### Adds spaced repetition intervals or revision reps to pages in a given Database!
 
@@ -154,7 +190,7 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool, revision_date:str
     # Extracting all the row ids of the database. In fact, row_ids are the database ids of the dbs in the parent db's
     status, row_ids = templates.get_row_ids(END_POINT_URL, HEADERS, database_id)
     if status != 200:
-        print("An error occurred! Make sure the provided Database ID is valid!")
+        print(colored("❌ An error occurred! Make sure the provided Database ID is valid!", "red"))
         return None   # This return has been used to break the function!
     else:
         pass
@@ -206,7 +242,7 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool, revision_date:str
                 }
             }
         else:
-            for rep_i, rep_col_name in enumerate(revision_col_name):
+            for rep_i, rep_col_name in enumerate(rep_col_names):
                 # To make this work, len(rep_col_names) must equal len(REP_INTERVALS) and they should be corresponding
                 data["properties"][rep_col_name] = {
                         "type": "date",
@@ -219,9 +255,9 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool, revision_date:str
 
         # Check if the update was successful
         if valid_row_response.status_code == 200:
-            print(f"    Revision was successfully set to {valid_row_names[valid_row_i]}!") if is_revision_rep else print(f"Spaced Repetition Intervals were Successfully Added to {valid_row_names[valid_row_i]}!")
+            print(colored(f"    ✅ Revision was successfully set to {valid_row_names[valid_row_i]}!", "green")) if is_revision_rep else print(colored(f"    ✅ Spaced Repetition Intervals were successfully set to {valid_row_names[valid_row_i]}!", "green"))
         else:
-            print(f"    An Error Occurred when Setting Revision to {valid_row_names[valid_row_i]}! :(\nPlease make sure the date you entered is correct!") if is_revision_rep else print(f"An Error Occurred when Adding Repetition Dates to {valid_row_names[valid_row_i]}! :(")
+            print(colored(f"    ❌ Error: Revision could not be set to {valid_row_names[valid_row_i]}!", "red")) if is_revision_rep else print(colored(f"    ❌ Error: Spaced Repetition Intervals could not be added to {valid_row_names[valid_row_i]}!", "red"))
 
     # Dealing with sub_branched_rows
     if sub_branched_row_names:
@@ -229,10 +265,10 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool, revision_date:str
             sub_branch_dict = {}
             for sub_branch_i, sub_branch_name in enumerate(sub_branched_row_names):
                 sub_branch_dict[sub_branch_name] = templates.extract_id_of_an_inline_databases(END_POINT_URL, HEADERS, sub_branched_row_ids[sub_branch_i])
-            print("Apparently, this seems to have sub-branches! I have listed them below...")
+            print(colored("✨ Apparently, this seems to have sub-branches! I have listed them below...", "green"))
             set_bulk_reps(sub_branch_dict, is_revision_rep, revision_date)
         except:
-            print("Skipped because of an error!")
+            print(colored("Skipped because of an error!", "red"))
 
 def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, global_revision_date:str=None):
     """
@@ -243,79 +279,86 @@ def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, global_revision_d
         revision_rep (bool): Whether reps are for revision (True) or not (False)
     """
     for i, branch in enumerate(branches_dict):
-        print(f"    {i+1}. {branch}")
+        print(colored(f"    {i+1}. {branch}", "blue", attrs=["bold"]))
         # Because of i+1 we are taking indices starting from 1...
-    current_help_message = "If you want to include only specific branches, enter branch numbers separated by commas. e.g. 1,2,3\nIn case you wanna exclude those branches, add `ex`: e.g. ex1,2,3\nIf you want to add repetitions for all branches leave blank!\nIf any of the above branches have sub-branches in them, don't worry, I'll take care of them with your instructions! :)"
+    current_help_message = colored("If you want to include only specific branches, enter branch numbers separated by commas. e.g. 1,2,3\nIn case you wanna exclude those branches, add `ex`: e.g. ex1,2,3\nIf you want to add repetitions for\n    - all branches, type *\n    - none of branches, leave blank\nIf any of the above branches have sub-branches in them, don't worry, I'll inform you and get your instructions! :)", "cyan")
     if INSTRUCTIONS:
         print(current_help_message)
     
-    branches_to_add_reps = get_valid_dict_data(branches_dict, exit_message=":( Sad to see you leave in the middle of setting repetition dates!", help_message=current_help_message)
+    branches_to_add_reps = get_valid_dict_data(branches_dict, exit_message=colored("😭 Oops! Sad to see you leaving while setting up repetition dates.", "red"), help_message=current_help_message)
     # The above code blocks segregates all the branches that need repetition dates to be added!
 
     for branch in branches_to_add_reps:
         branch_id = branches_to_add_reps[branch]
         
         if revision_rep:
-            print(f"Started Setting Revision to {branch}!")
+            print(colored(f"🚀 Started Setting Revision to {branch}!", "blue"))
             if global_revision_date:
                 revision_date = global_revision_date
             else:
-                revision_date = get_validated_user_input(f"Enter the revision date for {branch} (YYYY-MM-DD): ", f":( Sad to see you leaving while adding a Revision Date for {branch}!", ["YYYY-MM-DD"], True)
+                revision_date = get_validated_user_input(colored(f"📅 Enter the revision date for {branch} (YYYY-MM-DD): ", "blue"), colored(f"😭 Sad to see you leaving while adding a Revision Date for {branch}!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)", "magenta"), ["YYYY-MM-DD"], True)
             set_reps_for_pages(branch_id, is_revision_rep=True, revision_date=revision_date)
-            print(f"Ended Setting Repetitions to {branch}!")
+            print(colored(f"Ended Setting Revision to {branch}!", "blue"))
         else:
-            print(f"Started Adding Repetitions to {branch}!")
+            print(colored(f"🚀 Started Adding Repetitions to {branch}!", "blue"))
             set_reps_for_pages(branch_id)
-            print(f"Ended Adding Repetitions to {branch}!")
+            print(colored(f"✅ Ended Adding Repetitions to {branch}!", "blue"))
 
 def main():
     # Command Lists
     program_alive = True
     while program_alive:
-        command = get_command("> ")
+        command = get_command(colored("> ", "green"))
         if bulk_match_user_response(command, HELP_CMDS):
             # Checks whether user asks for help
-            print("""
-                Supported Commands:
-                    * set-rep -> Sets up repetition dates for notes when first repetition date column is empty!
-                    * exit (e) -> Exits the program
-                Note: You can specify which notes along the way...
+            print(f"""
+                {CMD_COLOR}Supported Commands:{RESET_COLOR}
+                {CMD_COLOR}
+                {EMOJI_COLOR}📅 set-rep{RESET_COLOR} -> Sets up repetition dates for notes when the first repetition date column is empty.
+                {EMOJI_COLOR}🔄 set-revision{RESET_COLOR} -> Sets up revision dates for notes.
+                {EMOJI_COLOR}🔧 settings{RESET_COLOR} -> Enables you to change settings!
+                {EMOJI_COLOR}💨 exit (e){RESET_COLOR} -> Exits the program.
+
+                {NOTE_COLOR}Note:{RESET_COLOR} You can specify which notes along the way...
             """)
         elif bulk_match_user_response(command, EXIT_CMDS):
             # Checks whether user asks to leave
-            print("Hope you fulfilled your purposes! Good Luck \w Studying!")
+            print(colored("🍀 Hope you fulfilled your purposes! Good Luck with Studying! 🚀", "green", attrs=["bold"]))
             time.sleep(3)
             program_alive = False
-        elif command == "set-rep":
+        elif bulk_match_user_response(command, SET_REP_CMDS):
             main_branches_dict = templates.get_child_databases(END_POINT_URL, HEADERS, STUDY_SPHERE_ID)
             if main_branches_dict:  # Checks whether the API request has been successful
-                print("Gotcha! I can add repetitions for the following StudySphere branches!")
+                print(colored("Gotcha! I can add repetitions for the following StudySphere branches!", "green"))
                 set_bulk_reps(main_branches_dict)
             else:
                 # If the API request failed, the user has already seen an error message!
-                print("Please make sure the Database ID of the StudySphere is correct!")
+                print(colored("Error: Please make sure the Database ID of the StudySphere is correct! 🔍", "red"))
                 continue
-        elif command == "set-revision":
-            print("Alright! You can choose from the following two options.")
-            print("   1. Specifying different dates for each branch you select to add revision repetitions\n   2. Setting the same revision repetition date for each branch you select.")
+        elif bulk_match_user_response(command, SET_REVISION_CMDS):
+            print(colored("Alright! Choose an option below😉:", "cyan"))
+            print(colored("   Option 1: Set different revision repetition dates for each branch.", "yellow"))
+            print(colored("   Option 2: Set the same revision repetition date for selected branches.", "yellow"))
             
-            option = get_validated_user_input("Enter only the option number: ", ":( Sad to see you leave in the middle of setting repetition dates!", ["1", "2"])
-            print(f"Yay, you selected option {option}!")
+            option = get_validated_user_input(colored("Enter only the option number😁: ", "cyan"), colored("😭 Sad to see you leave in the middle of setting repetition dates!", "red"), colored("What do you prefer, option 1 or 2?", "magenta"), ["1", "2"])
+            print(colored(f"Yay, you selected option {option}! 🎉", "green"))
             main_branches_dict = templates.get_child_databases(END_POINT_URL, HEADERS, STUDY_SPHERE_ID)
 
             if main_branches_dict:
-                print("I can set revision dates for the following branches!")
+                print(colored("📅 I can set revision dates for the following branches!", "blue"))
             else:
-                print("Please make sure the Database ID of the StudySphere is correct!")
+                print(colored("🥲 Please make sure the Database ID of the StudySphere is correct!", "red", attrs=["bold"]))
                 continue
             # By this point, the option can only be 1 or 2...
             if option == "1":
                 set_bulk_reps(main_branches_dict, True)
             else:
-                revision_date = get_validated_user_input("Before I show you those cool branches, please enter your desired revision date: ", ":( Sad to see you leave in the middle of setting up revision dates!", ["YYYY-MM-DD"], True)
+                revision_date = get_validated_user_input(colored("Before I show you those cool branches, please enter your desired revision date (YYYY-MM-DD): ", "blue"), colored("😭 Sad to see you leave in the middle of setting up revision dates!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)"),["YYYY-MM-DD"], True)
                 set_bulk_reps(main_branches_dict, True, revision_date)
+        elif bulk_match_user_response(command, SETTINGS_CMDS):
+            print("Yo, settings are cool!")
         else:
-            print("Oops, I don't recognize that command!")
+            print(colored("🥺 Oops, I don't recognize that command!", "red"))
     quit()
 
 main()
