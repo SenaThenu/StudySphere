@@ -1,5 +1,24 @@
 {
-    "Rep_Intervals": [7, 21, 60],
-    "Instructions": true,
-    "StudySphere_ID": ""
+    "API_KEY": ["Your API Key. If you want help, visit: ", "Nothing :O"],
+    "StudySphere_ID": [
+        "The Database ID of the StudySphere. If you want help, visit: ",
+        "Nothing :O"
+    ],
+    "Instructions": ["Whether instructions should be displayed or not.", true],
+    "Rep_Col_Names": [
+        "A name list of all columns which store spaced repetition dates.",
+        ["Rep 1", "Rep 2", "Rep 3"]
+    ],
+    "Rep_Intervals": [
+        "A list of Spaced Repetition intervals in days. (e.g. first repetition would be set a week after)",
+        [7, 21, 60]
+    ],
+    "Notes_Title_Col_Name": [
+        "The column name which stores the names of the all the notes stored in one branch!",
+        "Lesson"
+    ],
+    "Revision_Col_Name": [
+        "Name of the column which stores revision dates!",
+        "Revise Rep"
+    ]
 }

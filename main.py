@@ -14,10 +14,12 @@ import templates
 # Loading User Settings
 with open("user_settings.json", "r") as f:
     user_settings = json.load(f)
+    f.close()
+    # In each setting in the json file, index 0 stores the description of the setting while index 1 holds the real value!
 
 # Necessary IDs
 API_KEY = "secret_TGrfvNrdwP6DmQDpbUP9QAVZFF8e4e0N1B6XTauFUP1"
-STUDY_SPHERE_ID = user_settings["StudySphere_ID"]
+STUDY_SPHERE_ID = user_settings["StudySphere_ID"][1]
 
 # Web Request Info
 END_POINT_URL = "https://api.notion.com/v1"
@@ -31,12 +33,14 @@ HEADERS = {
 DATE_FORMAT = "%Y-%m-%d"
 
 # Spaced-Repetition Variables
-REP_INTERVALS = user_settings["Rep_Intervals"] # A list of repetition intervals whose values are in days!
-INSTRUCTIONS = user_settings["Instructions"]
+REP_INTERVALS = user_settings["Rep_Intervals"][1] # A list of repetition intervals whose values are in days!
+INSTRUCTIONS = user_settings["Instructions"][1]
 
 # --- Start Creating the CLI ---
 
 # Specifying Common CMDs
+YES_CMDS = ["y", "yes", "yep", "yeah", "1"]
+NO_CMDS = ["n", "no", "nope", "nah", "0"]
 HELP_CMDS = ["h", "help"]
 EXIT_CMDS = ["e", "exit", "q", "quit", "c", "close"]
 INCLUDE_ALL = ["*", "."]
@@ -67,15 +71,18 @@ def get_command(prompt:str) -> str:
     command = input(f"{prompt} ").lower().strip()
     return command
 
-def get_validated_user_input(prompt: str, exit_message: str, help_message: str, options:list, match_length: bool=False) -> str:
+def get_user_input(prompt: str, exit_message: str, help_message: str, validate: bool=True, is_int: bool=False, options:list=[], match_length: bool=False) -> str:
     """
-    ### Returns the validated user input for the after asking the given prompt from the user!
+    ### Returns the user's response for the given prompt. Includes validation functionality!
 
     Args:
         prompt (str): What to ask from the user to get the input!
         exit_message (str): The message to display in case the user asks to leave!
         help_message (str): Message to display if the user requires help!
-        options (list): What are the possible options for the answer. If match length is False, returns the user input if it is present in the options!
+        validate (bool, optional): Whether the user input should be validated before returning. Defaults to True.
+        * below are validation parameters *
+        is_int (bool, optional): Validates if the user_input should be an integer!
+        options (list, optional): Options refer to the possible answers for the prompt. If match length is False, returns the user input if it is present in the options!
         match_length (bool, optional): Whether the validation should be done through matching the length of an option or the user input. Defaults to False.
 
     Returns:
@@ -84,10 +91,13 @@ def get_validated_user_input(prompt: str, exit_message: str, help_message: str, 
     valid_input = False
     while not valid_input:
         user_input = input(prompt).strip()
-        if user_input in options and not match_length:
-            valid_input = True
-        elif match_length and len(user_input) == len(options[0]):
-            valid_input = True
+        if not validate:
+            break
+        elif options:
+            if user_input in options and not match_length:
+                valid_input = True
+            elif match_length and len(user_input) == len(options[0]):
+                valid_input = True
         elif user_input in EXIT_CMDS:
             valid_input = True
             print(exit_message)
@@ -96,6 +106,13 @@ def get_validated_user_input(prompt: str, exit_message: str, help_message: str, 
         elif user_input in HELP_CMDS:
             print(help_message)
             continue
+        elif is_int:
+            try:
+                validated_input = int(user_input)
+                return validated_input
+            except:
+                print(colored("Hey, you are supposed to type out a number🤨!", "red"))
+                continue
         else:
             print(colored("Oops! 😕 I don't recognize it!", "red"))
             continue
@@ -296,7 +313,7 @@ def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, global_revision_d
             if global_revision_date:
                 revision_date = global_revision_date
             else:
-                revision_date = get_validated_user_input(colored(f"📅 Enter the revision date for {branch} (YYYY-MM-DD): ", "blue"), colored(f"😭 Sad to see you leaving while adding a Revision Date for {branch}!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)", "magenta"), ["YYYY-MM-DD"], True)
+                revision_date = get_user_input(colored(f"📅 Enter the revision date for {branch} (YYYY-MM-DD): ", "blue"), colored(f"😭 Sad to see you leaving while adding a Revision Date for {branch}!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)", "magenta"), options=["YYYY-MM-DD"], match_length=True)
             set_reps_for_pages(branch_id, is_revision_rep=True, revision_date=revision_date)
             print(colored(f"Ended Setting Revision to {branch}!", "blue"))
         else:
@@ -340,7 +357,7 @@ def main():
             print(colored("   Option 1: Set different revision repetition dates for each branch.", "yellow"))
             print(colored("   Option 2: Set the same revision repetition date for selected branches.", "yellow"))
             
-            option = get_validated_user_input(colored("Enter only the option number😁: ", "cyan"), colored("😭 Sad to see you leave in the middle of setting repetition dates!", "red"), colored("What do you prefer, option 1 or 2?", "magenta"), ["1", "2"])
+            option = get_user_input(colored("Enter only the option number😁: ", "cyan"), colored("😭 Sad to see you leave in the middle of setting repetition dates!", "red"), colored("What do you prefer, option 1 or 2?", "magenta"), options=["1", "2"])
             print(colored(f"Yay, you selected option {option}! 🎉", "green"))
             main_branches_dict = templates.get_child_databases(END_POINT_URL, HEADERS, STUDY_SPHERE_ID)
 
@@ -353,10 +370,66 @@ def main():
             if option == "1":
                 set_bulk_reps(main_branches_dict, True)
             else:
-                revision_date = get_validated_user_input(colored("Before I show you those cool branches, please enter your desired revision date (YYYY-MM-DD): ", "blue"), colored("😭 Sad to see you leave in the middle of setting up revision dates!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)"),["YYYY-MM-DD"], True)
+                revision_date = get_user_input(colored("Before I show you those cool branches, please enter your desired revision date (YYYY-MM-DD): ", "blue"), colored("😭 Sad to see you leave in the middle of setting up revision dates!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)"), options=["YYYY-MM-DD"], match_length=True)
                 set_bulk_reps(main_branches_dict, True, revision_date)
         elif bulk_match_user_response(command, SETTINGS_CMDS):
-            print("Yo, settings are cool!")
+            all_settings_modified = False
+            
+            while not all_settings_modified:
+                with open("user_settings.json", "r") as read_settings:
+                    user_settings = json.load(read_settings)
+                    read_settings.close()
+
+                print(colored("I can modify the following settings ⚙️!", "green", attrs=["bold"]))
+
+                for i, setting in enumerate(user_settings):
+                    print(colored(f"    {i+1}. {setting} - {user_settings[setting][0]}", "blue"))
+                    print(colored(f"        This is currently set to {user_settings[setting][1]}", "magenta"))
+                    if setting == "Instructions":
+                        print(colored("No need to deal with the following settings (apart from Rep_Intervals) as long as you don't modify the columns in the StudySphere template!", "blue", attrs=["bold"]))
+                    elif setting == "Rep_Col_Names":
+                        print(colored("         ❗Important: the length of Rep_Col_Names must be equal to the length of Rep_Intervals", "red"))
+                # This is specified to segregate settings which require lists because the program can't directly accept lists
+                list_settings = [setting_name for setting_name in user_settings if type(user_settings[setting_name][1]) == list]
+
+                # The setting number
+                setting_i_to_modify = get_user_input(colored("Enter only the setting number to modify it: ", "cyan"), colored("😭 Sad to see you leaving in the middle of modifying settings!", "red"), colored("No worries! Just refer to the official documentation: ", "yellow"), is_int=True)
+                # setting_i_to_modify indices start from 1.
+                setting_to_modify = list(user_settings.keys())[setting_i_to_modify-1]
+
+                if setting_i_to_modify > 0 and setting_i_to_modify <= len(user_settings):
+                    if setting_to_modify in list_settings:
+                        new_list = []
+                        elements_are_int = type(user_settings[setting_to_modify][1][0]) == int
+
+                        # Iteratively asking each element in the list from the user
+                        n_elements = get_user_input(colored(f"We need a list to update {setting_to_modify}\nSo, enter the number of elements in the new list: ", "yellow"), colored("😭 Sad to see you leave while thinking about the number of elements in a list...", "red"), colored("Just tell me how many values are in the new list you wanna set this setting to!", "yellow"), is_int=True)
+                        
+                        for element_i in range(n_elements):
+                            new_element = get_user_input(colored(f"Enter element number {element_i+1}: ", "yellow"), colored("😭 Sad to see you leave while specifying your fancy list!", "red"), colored("Just type what you want your list to have at this position!", "yellow"), is_int=elements_are_int)
+                            new_list.append(new_element)
+
+                        # Updating the user_settings
+                        user_settings[setting_to_modify][1] = new_list
+                        print(colored("🎉 Yay, the setting has been successfully configured!", "green", attrs=["bold"]))
+                    else:
+                        new_setting = get_user_input(colored(f"Enter the value you wanna set to {setting_to_modify}: ", "yellow"), colored(f"😭 Sad to see you leave while modifying the setting {setting_to_modify}", "red"), colored(f"Oh! Just enter the new value you set to {setting_to_modify}!", "yellow"), validate=False)
+                        user_settings[setting_to_modify][1] = new_setting
+                    
+                    with open("user_settings.json", "w") as new_user_settings:
+                        json.dump(user_settings, new_user_settings)
+                        new_user_settings.close()
+                    print(colored(f"Successfully updated -> {setting_to_modify}🎉!", "green"))
+
+                    another_round = get_user_input(colored("Do you want to modify another setting? (y/n): ", "cyan"), colored("Hope the new setting fulfills your purposes! All the best!😍", "green", attrs=["bold"]), colored("Just type y for yes and n for no!", "yellow"), options=YES_CMDS+NO_CMDS)
+                    if bulk_match_user_response(another_round, YES_CMDS):
+                        continue
+                    else:
+                        print("Alright! Feel free to modify any other setting later...")
+                        break
+                else:
+                    print(colored("🤭 Oops! That's an invalid setting number!", "red"))
+                    continue
         else:
             print(colored("🥺 Oops, I don't recognize that command!", "red"))
     quit()
