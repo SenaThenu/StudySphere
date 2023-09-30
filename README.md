@@ -41,7 +41,6 @@
 - [Roadmap 🗺️](#roadmap-️)
 - [Contributing 👋](#contributing-)
 - [Current Contributors 🧙‍♂️](#current-contributors-️)
-- [Contact 📧](#contact-)
 - [Acknowledgments \\w 💖](#acknowledgments-w-)
 
 <!-- ABOUT THE PROJECT -->
@@ -156,7 +155,7 @@ Welcome Code Wizards! 🧙‍♂️✨ Your contributions fuel ⛽ this repo!!!
     5. Push to the Main Branch of this repo (`git push origin my_awesome_feature_branch`)
     6. Open a Pull Request 🚀
     
-    > If you want help with Git checkout this Fireship video: [Git It!](https://www.youtube.com/watch?v=HkdAHXoRtos)
+    > If you want help with Git check out this Fireship video: [Git It!](https://www.youtube.com/watch?v=HkdAHXoRtos)
 
 <p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
 
@@ -176,21 +175,6 @@ Welcome Code Wizards! 🧙‍♂️✨ Your contributions fuel ⛽ this repo!!!
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-
-<!-- CONTACT -->
-## Contact 📧
-
-Senash Thenuja - senathenu@gmail.com 📬 
-
-<a href="https://twitter.com/SenaThenu"> <img src="https://img.shields.io/badge/-022138?logo=x&logoColor=ffffff" alt="Twitter">
-</a>
-<a href="https://instagram.com/SenaThenu"> <img src="https://img.shields.io/badge/-d62976?logo=instagram&logoColor=ffffff" alt="Instagram">
-<a href="https://www.linkedin.com/in/SenaThenu/"> <img src="https://img.shields.io/badge/-0072b1?logo=linkedin&logoColor=ffffff" alt="Linkedin">
-<a href="https://www.reddit.com/user/SenaThenu"> <img src="https://img.shields.io/badge/-FF5700?logo=reddit&logoColor=ffffff" alt="Reddit">
-</a>
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments \w 💖
