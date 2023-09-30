@@ -162,5 +162,3 @@ cython_debug/
 # Local python test files
 test.py
 test.json
-test_api.py
-test1.py
