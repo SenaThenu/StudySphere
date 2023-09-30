@@ -153,7 +153,7 @@ Welcome Code Wizards! 🧙‍♂️✨ Your contributions fuel ⛽ this repo!!!
     2. Create your Feature Branch (`git checkout -b my_awesome_feature_branch`)
     3. Commit your Changes (`git commit -m 'Add some awesome features'`)
     4. Upstream this repository (`git remote add origin https://github.com/SenaThenu/StudySphere.git`)
-    5. Push to the Main Branch of this repo (`git push origin main`)
+    5. Push to the Main Branch of this repo (`git push origin my_awesome_feature_branch`)
     6. Open a Pull Request 🚀
     
     > If you want help with Git checkout this Fireship video: [Git It!](https://www.youtube.com/watch?v=HkdAHXoRtos)
