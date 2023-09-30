@@ -1,4 +1,23 @@
 {
-    "projectName": "StudySphere",
-    "projectOwner": "SenaThenu"
+  "projectName": "StudySphere",
+  "projectOwner": "SenaThenu",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "SenaThenu",
+      "name": "Senash Thenuja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98274844?v=4",
+      "profile": "http://senathenu.github.io",
+      "contributions": [
+        "code",
+        "doc",
+        "eventOrganizing"
+      ]
+    }
+  ]
 }
