@@ -2,7 +2,8 @@
 This Python file connects all the bits of code to address user commands.
 """
 
-from termcolor import colored
+from termcolor import colored, cprint  # To add terminal colours
+from pyfiglet import figlet_format  # To generate ASCII art (Header!)
 
 import requests
 import json
@@ -322,6 +323,9 @@ def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, global_revision_d
             print(colored(f"✅ Ended Adding Repetitions to {branch}!", "blue"))
 
 def main():
+    # Welcome Header
+    cprint(figlet_format("StudySphere Manager!", "doom"), "green", attrs=["bold"])
+
     # Command Lists
     program_alive = True
     while program_alive:
