@@ -19,7 +19,7 @@ with open("user_settings.json", "r") as f:
     # In each setting in the json file, index 0 stores the description of the setting while index 1 holds the real value!
 
 # Necessary IDs
-API_KEY = "secret_TGrfvNrdwP6DmQDpbUP9QAVZFF8e4e0N1B6XTauFUP1"
+API_KEY = user_settings["API_KEY"][1]
 STUDY_SPHERE_ID = user_settings["StudySphere_ID"][1]
 
 # Web Request Info
