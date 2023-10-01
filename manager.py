@@ -12,30 +12,39 @@ from datetime import datetime, timedelta
 
 import templates
 
-# Loading User Settings
-with open("user_settings.json", "r") as f:
-    user_settings = json.load(f)
-    f.close()
-    # In each setting in the json file, index 0 stores the description of the setting while index 1 holds the real value!
+def load_global_settings():
+    """This is a special function which is used to update the global settings from user_settings.json"""
+    # Loading User Settings
+    with open("user_settings.json", "r") as f:
+        user_settings = json.load(f)
+        f.close()
+        # In each setting in the json file, index 0 stores the description of the setting while index 1 holds the real value!
 
-# Necessary IDs
-API_KEY = user_settings["API_KEY"][1]
-STUDY_SPHERE_ID = user_settings["StudySphere_ID"][1]
+    global API_KEY, STUDY_SPHERE_ID, END_POINT_URL, HEADERS, REP_INTERVALS, INSTRUCTIONS
+    
+    # Necessary IDs
+    API_KEY = user_settings["API_KEY"][1]
+    STUDY_SPHERE_ID = user_settings["StudySphere_ID"][1]
 
-# Web Request Info
-END_POINT_URL = "https://api.notion.com/v1"
-HEADERS = {
-    "Authorization": f"Bearer {API_KEY}",
-    "Content-Type": "application/json",
-    "Notion-Version": "2022-06-28"
-}
+    # Web Request Info
+    END_POINT_URL = "https://api.notion.com/v1"
+    HEADERS = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json",
+        "Notion-Version": "2022-06-28"
+    }
+    
+    # Displaying Instructions
+    INSTRUCTIONS = user_settings["Instructions"][1]
+
+    # Spaced-Repetition Variables
+    REP_INTERVALS = user_settings["Rep_Intervals"][1] # A list of repetition intervals whose values are in days!
+
+# Loading global variables from user_settings
+load_global_settings()
 
 # Conventions
 DATE_FORMAT = "%Y-%m-%d"
-
-# Spaced-Repetition Variables
-REP_INTERVALS = user_settings["Rep_Intervals"][1] # A list of repetition intervals whose values are in days!
-INSTRUCTIONS = user_settings["Instructions"][1]
 
 # --- Start Creating the CLI ---
 
@@ -434,6 +443,9 @@ def main():
                 else:
                     print(colored("🤭 Oops! That's an invalid setting number!", "red"))
                     continue
+            
+            # To load the new settings
+            load_global_settings()
         else:
             print(colored("🥺 Oops, I don't recognize that command!", "red"))
     quit()
