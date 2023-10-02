@@ -83,7 +83,7 @@ To get started, download the code using any of the methods as shown below. (To g
 
 ### Prerequisites <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" alt="Clipboard" width="25" height="25" />
 
-1.  You have to duplicate the StudySphere Notion Template (unless you wanna create one outta scratch :) Download it by following this [link](https://senathenu.notion.site/2428547d9c0f45c48fa0b4018fec3e54?v=92e0d0c8a4c44bd7ba1acd1d67b7b1d0&pvs=4)!
+1.  You have to duplicate the StudySphere Notion Template (unless you wanna create one from scratch :) Download it by following this [link](https://senathenu.notion.site/2428547d9c0f45c48fa0b4018fec3e54?v=92e0d0c8a4c44bd7ba1acd1d67b7b1d0&pvs=4)!
 
 2.  Make sure Python is installed on your computer! You can install it via [Python Official Website](https://www.python.org/)!
 
@@ -92,6 +92,9 @@ To get started, download the code using any of the methods as shown below. (To g
         `pip install -r requirements.txt`
 
 Then, follow the instructions of the following video...
+
+https://github.com/SenaThenu/StudySphere/assets/98274844/58ce2f8a-0a62-426f-b3a6-6da8f8ac8321
+
 
 <p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
@@ -112,9 +115,9 @@ Then, there is a Revision Rep Column to perform revision on the notes when you h
 
 ### How the Program Works
 
-Instead of letting you to manually set spaced repetition and revision dates (which is dreadful), it automatically sets them.
+Instead of letting you manually set spaced repetition and revision dates (which is dreadful), it automatically sets them.
 
-_Note: this just what it is capable of currently..._
+_Note: this is just what it is capable of currently..._
 
 Yet, as a community, especially during this Hacktoberfest, we can extend it further. We all (including you) power up this! So, why are you waiting? Go ahead... It's okay to make mistakes. We all are learning _forever!_
 
@@ -124,7 +127,7 @@ Yet, as a community, especially during this Hacktoberfest, we can extend it furt
 
 ## Roadmap <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/World%20Map.png" alt="World Map" width="25" height="25" />
 
-I have listed some unaccomplished features you can start working on. Plus, you can even make a non-code contribution to hacktoberfest by adding more features to this roadmap!
+I have listed some unaccomplished features you can start working on. Plus, you can even make a non-code contribution to Hacktoberfest by adding more features to this roadmap!
 
 -   [x] Automatic Spaced Repetition Dates Setter <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
 -   [x] Automatic Revision Scheduler <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
