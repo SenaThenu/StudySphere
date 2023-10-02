@@ -4,15 +4,15 @@
 <br>
 <div align="center">
   <a href="https://github.com/SenaThenu/StudySphere">
-    <img src="https://github.com/SenaThenu/StudySphere/blob/main/readme-assets/Logo.png" alt="Logo" height="80">
+    <img src="https://github.com/SenaThenu/StudySphere/blob/main/readme-assets/logo.png" alt="Logo" height="125">
   </a>
 
-<h3 align="center">🚀 StudySphere 🚀</h3>
+<h3 align="center"><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Rocket.png" alt="Rocket" width="25" height="25" /> StudySphere <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Rocket.png" alt="Rocket" width="25" height="25" /></h3>
 
   <p align="center">
-    ✨ Streamline your study journey with this open-source Notion template, integrating scientifically-backed techniques for maximum effectiveness. ✨
+    <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="25" height="25" /> Streamline your study journey with this open-source Notion template, integrating scientifically-backed techniques for maximum effectiveness. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="25" height="25" />
     <br>
-    <a href="https://github.com/SenaThenu/StudySphere/issues">Report Bug🐞/Feature🙌</a>
+    <a href="https://github.com/SenaThenu/StudySphere/issues">Report a Bug <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Bug.png" alt="Bug" width="20" height="20" /> or Request a New Feature<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Star.png" alt="Star" width="20" height="20" /></a>
   </p>
 </div>
 
@@ -26,36 +26,41 @@
   <img src="https://img.shields.io/github/issues/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Issues">
 </p>
 
+<!-- Access to the Notion Template -->
+<p align="center">
+  <a href="https://senathenu.notion.site/2428547d9c0f45c48fa0b4018fec3e54?v=92e0d0c8a4c44bd7ba1acd1d67b7b1d0&pvs=4">
+      <img src="https://img.shields.io/badge/Duplicate-The_Notion_Template-b8c7d6?&logo=notion&labelColor=003694&color=ffffff" alt="Download StudySphere Template">
+  </a>
+</p>
 
 <!-- TABLE OF CONTENTS -->
-## Table of Contents 📜
-- [Table of Contents 📜](#table-of-contents-)
-- [About The Project 📖](#about-the-project-)
-  - [Built With 🔧](#built-with-)
-- [Getting Started 🚦](#getting-started-)
-  - [Prerequisites 📋](#prerequisites-)
-  - [Installation 🛠️](#installation-️)
-- [Usage 🚀](#usage-)
-  - [How the Template Works](#how-the-template-works)
-  - [How the Program Works](#how-the-program-works)
-- [Roadmap 🗺️](#roadmap-️)
-- [Contributing 👋](#contributing-)
-- [Current Contributors 🧙‍♂️](#current-contributors-️)
-- [Acknowledgments \\w 💖](#acknowledgments-w-)
+## Table of Contents <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Scroll.png" alt="Scroll" width="25" height="25" />
+
+-   [About The Project <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Open Book.png" alt="Open Book" width="20" height="20" />](#about-the-project-)
+    -   [Built With <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Wrench.png" alt="Wrench" width="20" height="20" />](#built-with-)
+-   [Getting Started <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Vertical Traffic Light.png" alt="Traffic Lights" width="20" height="20" />](#getting-started-)
+    -   [Prerequisites <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" alt="Clipboard" width="20" height="20" />](#prerequisites-)
+-   [Usage <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Rocket.png" alt="Rocket" width="20" height="20" />](#usage-)
+    -   [How the Template Works](#how-the-template-works)
+    -   [How the Program Works](#how-the-program-works)
+-   [Roadmap <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/World%20Map.png" alt="Map" width="20" height="20" />](#roadmap-️)
+-   [Contributing <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Waving%20Hand.png" alt="Waving Hand" width="20" height="20" />](#contributing-)
+-   [Current Contributors <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Mage.png" alt="Man Mage" width="20" height="20" />](#current-contributors-️)
+-   [Contact <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/E-Mail.png" alt="E-Mail" width="20" height="20" />](#contact-)
+-   [Acknowledgments \w <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Sparkling%20Heart.png" alt="Sparkling Heart" width="20" height="20" />](#acknowledgments-w-)
 
 <!-- ABOUT THE PROJECT -->
-## About The Project 📖
+## About The Project <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Open Book.png" alt="Open Book" width="25" height="25" />
 
-[![Product Screenshot][product-screenshot]](https://example.com)
+<img src="readme-assets/preview.png" align="center"/>
 
-Elevate your study game with this open-source Notion template—it's like having a personal study cheerleader! This template embraces the science-backed power of Active Recall and Spaced Repetition, all while adding a dash of fun with a traffic light system that guides your way. 
+Elevate your study game with this open-source Notion template—it's like having a personal study cheerleader! This template embraces the science-backed power of Active Recall and Spaced Repetition, all while adding a dash of fun with a traffic light system that guides your way.
 
 The best part? Our trusty `manager.py` script automates the whole process kicking your friction in the butt! It's all about working smart, not hard, in this nonprofit study revolution!
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
-
-### Built With 🔧
+### Built With <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Wrench.png" alt="Wrench" width="25" height="25" />
 
 <a href="https://www.python.org/">
   <img src="https://img.shields.io/badge/Python-3570a0?style=for-the-badge&logo=python&logoColor=ffffff" alt="Python">
@@ -64,108 +69,114 @@ The best part? Our trusty `manager.py` script automates the whole process kickin
   <img src="https://img.shields.io/badge/Notion_API-b8c7d6?style=for-the-badge&logo=notion&logoColor=000" alt="Notion API">
 </a>
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
-
-
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
 <!-- GETTING STARTED -->
-## Getting Started 🚦
-Firstly, you need the StudySphere Notion Template to use the `manager.py` (unless you wanna create one outta scratch :) Download it by following this [link](https://senathenu.notion.site/2428547d9c0f45c48fa0b4018fec3e54?v=92e0d0c8a4c44bd7ba1acd1d67b7b1d0&pvs=4)!
+
+## Getting Started <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Vertical Traffic Light.png" alt="Traffic Lights" width="25" height="25" />
 
 To get started, download the code using any of the methods as shown below. (To get this, click on "Code" on the top-right)
 
-<center>
+<div align="center">
   <img src="https://github.com/SenaThenu/StudySphere/blob/main/readme-assets/download-the-code.png" alt="Download the Code" height="300">
-</center>
+</div>
 
-### Prerequisites 📋
-Most importantly, you need Python installed on your computer! You can install it via [Python Official Website](https://www.python.org/)
+### Prerequisites <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Clipboard.png" alt="Clipboard" width="25" height="25" />
 
-Afterwards, to run the trusty  `manager.py` program, you need to install a package we have used to make the CLI colourful. So, open the terminal in the folder where you have the downloaded code. Then run,
+1.  You have to duplicate the StudySphere Notion Template (unless you wanna create one outta scratch :) Download it by following this [link](https://senathenu.notion.site/2428547d9c0f45c48fa0b4018fec3e54?v=92e0d0c8a4c44bd7ba1acd1d67b7b1d0&pvs=4)!
 
-`pip install -r requirements.txt`
+2.  Make sure Python is installed on your computer! You can install it via [Python Official Website](https://www.python.org/)!
 
-### Installation 🛠️
-Once you have got the code and all the necessary 3rd party libraries, you are pretty much done with installation.
+3.  Afterwards, to run the trusty `manager.py` program, you need to install some third-party packages. So, open the terminal in the folder where you have the downloaded code. Then run,
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
+        `pip install -r requirements.txt`
 
+Then, follow the instructions of the following video...
 
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
 <!-- USAGE EXAMPLES -->
-## Usage 🚀
+
+## Usage <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Rocket.png" alt="Rocket" width="25" height="25" />
 
 ### How the Template Works
 
-Basically, it's a database where you can store your main subjects/topics (or whatever you wanna call them). To keep things simple, we call the stuff inside a database branches!
+Basically, it's a database where you can store your class/lecture notes divided into main subjects/topics (or whatever you wanna call them). To keep things simple, we call them branches!
 
-Every note you store in the database is associated with 3 Repetition Interval Columns (Rep 1, Rep 2, Rep 3) for you to store spaced repetition dates and 3 Repetition Rates columns to rate how confident you felt (green, yellow, red). Based on your ratings, the database calculates your strength for the content in that note. So, all the notes are sorted according to the strength. Then, there is a Revision Rep Column to perform revision on the notes when you have an exam ahead.
+Every note you store in the StudySphere is associated with 3 Repetition Interval Columns (Rep 1, Rep 2, Rep 3) for you to store spaced repetition dates and 3 Repetition Rates columns to rate how confident you felt (green, yellow, red).
+> Of course, you can add more... Just make sure to update the settings!
+
+Based on your ratings, your strength is calculated regarding the content in that note. So, all the notes are sorted according to the strength. 
+
+Then, there is a Revision Rep Column to perform revision on the notes when you have an exam ahead.
 
 ### How the Program Works
 
-Instead of letting you to manually set spaced repetition and revision dates (which is dreadful), it automatically sets them with predefined intervals.
+Instead of letting you to manually set spaced repetition and revision dates (which is dreadful), it automatically sets them.
 
-*Note: this just what it is capable of currently...*
+_Note: this just what it is capable of currently..._
 
-Yet, as a community, especially during this Hacktoberfest, we can extend it further. We all (including you) power up this! So, why are you waiting? Go ahead... It's okay to make mistakes. We all are learning *forever!*
+Yet, as a community, especially during this Hacktoberfest, we can extend it further. We all (including you) power up this! So, why are you waiting? Go ahead... It's okay to make mistakes. We all are learning _forever!_
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
-
-
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
 <!-- ROADMAP -->
-## Roadmap 🗺️
-I have listed some unaccomplished features you can start working on. Plus, you can even add some. See, it's a non-code contribution to Hacktoberfest!
 
-- [ ] Created a Logo ✨
-- [x] Automatic Spaced Repetition Dates Setter ✨
-- [x] Automatic Revision Scheduler ✨
-  - [ ] Smart Revision Setter - Setting revision for notes whose strength is below a specific limit.
-- [x] Flexible Parameters (Modify using settings) ✨
-- [ ] Replace the fancy emojis in this readme with [3D animated fancy ones](https://emojipedia.org/microsoft-teams)
+## Roadmap <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/World%20Map.png" alt="World Map" width="25" height="25" />
+
+I have listed some unaccomplished features you can start working on. Plus, you can even make a non-code contribution to hacktoberfest by adding more features to this roadmap!
+
+-   [x] Automatic Spaced Repetition Dates Setter <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
+-   [x] Automatic Revision Scheduler <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
+    -   [ ] Smart Revision Setter - Setting revision for notes whose strength is below a specific limit. <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
+    -   [ ] Individual Date Selection for Each Note <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
+-   [x] Flexible Parameters that can be modified using setting) <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="20" height="20" />
 
 See the [open issues](https://github.com/SenaThenu/StudySphere/issues) for a full list of proposed features (and known issues).
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
-
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
 <!-- CONTRIBUTING -->
-## Contributing 👋
 
-Welcome Code Wizards! 🧙‍♂️✨ Your contributions fuel ⛽ this repo!!!
+## Contributing <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Waving%20Hand.png" alt="Waving Hand" width="25" height="25" />
+
+Welcome Code Wizards & Witches! <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Mage.png" alt="Man Mage" width="25" height="25" /><img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Woman%20Mage.png" alt="Woman Mage" width="25" height="25" /> Your contributions fuel <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Fire.png" alt="Fire" width="25" height="25" /> this repo!!!
 <br>
-*Let's show the power 💪 of Open-Source! Power up the Hacktoberfest!*
+_Let's show the power <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Flexed Biceps.png" alt="Muscles" width="25" height="25" /> of Open-Source!_
 
 <details>
-    <summary>Why are open-source developers the sweetest folks in tech? 🍭</summary>
-    <p> Because they believe in sharing not only code but also <i>smiles 😄</i> and <i>love ❤️</i> through 0s and 1s!</p>
+    <summary>Why are open-source developers the sweetest folks in tech? <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Lollipop.png" alt="Lollipop" width="25" height="25" /></summary>
+    <p> Because they believe in sharing not only code but also <i>smiles <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Face with Hand Over Mouth.png" alt="Laugh" width="25" height="25" /></i> and <i>love <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Beating Heart.png" alt="Beating Heart" width="25" height="25" /></i> through 0s and 1s!</p>
 </details>
 
 <br>
 
-* Ways to Contribute 🫂
-  * [Open Issues](https://github.com/SenaThenu/StudySphere/issues)
-  * [Update Readme](https://github.com/SenaThenu/StudySphere/blob/main/README.md)
-  * [Make the Logo and the Assets Cooler](https://github.com/SenaThenu/StudySphere/tree/main/slides)
-  * Introduce an ***awesome feature*** 💫
-    1. Fork the Project 🍴
-    2. Create your Feature Branch (`git checkout -b my_awesome_feature_branch`)
-    3. Commit your Changes (`git commit -m 'Add some awesome features'`)
-    4. Upstream this repository (`git remote add origin https://github.com/SenaThenu/StudySphere.git`)
-    5. Push to the Main Branch of this repo (`git push origin my_awesome_feature_branch`)
-    6. Open a Pull Request 🚀
-    
-    > If you want help with Git check out this Fireship video: [Git It!](https://www.youtube.com/watch?v=HkdAHXoRtos)
+-   Ways to Contribute <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Smiling Face with Open Hands.png" alt="Hugging Face" width="25" height="25" />
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
+    -   [Open Issues](https://github.com/SenaThenu/repo_name/issues)
+    -   [Update Readme](https://github.com/SenaThenu/repo_name/blob/main/README.md)
+    -   [Make the Logo and the Assets Cooler](https://github.com/SenaThenu/repo_name/tree/main/slides)
+    -   Introduce an **_awesome feature_** <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Glowing Star.png" alt="Glowing Star" width="25" height="25" />
 
-## Current Contributors 🧙‍♂️
+        1. Fork the Project <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Food/Fork and Knife.png" alt="Fork" width="25" height="25" />
+        2. Create your Feature Branch (`git checkout -b my_awesome_feature_branch`)
+        3. Commit your Changes (`git commit -m 'Add some awesome features'`)
+        4. Upstream this repository (`git remote add origin https://github.com/SenaThenu/StudySphere.git`)
+        5. Push to the Main Branch of this repo (`git push origin my_awesome_feature_branch`)
+        6. Open a Pull Request <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel and places/Rocket.png" alt="Rocket" width="25" height="25" />
 
-😍This wouldn't exist if it weren't for these developers! ***My Gratitude!!!*** ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+        > If you want help with Git check out this Fireship video: [Git It!](https://www.youtube.com/watch?v=HkdAHXoRtos)
+
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
+
+## Current Contributors <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Man%20Mage.png" alt="Man Mage" width="25" height="25" />
+
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Star-Struck.png" alt="Star Face" width="25" height="25" />This wouldn't exist if it weren't for these developers! **_Our Gratitude!!!_** ([emoji key](https://allcontributors.org/docs/en/emoji-key)): <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Symbols/Bubbles.png" alt="Bubbles" width="25" height="25" />
+
 > "Even when I lose, I'm winning \
 > 'Cause I give you all of me \
 > And you give me all of you" \
-> *~ All of Me - John Legend*
+> _~ All of Me - John Legend_
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -184,9 +195,13 @@ Welcome Code Wizards! 🧙‍♂️✨ Your contributions fuel ⛽ this repo!!!
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments \w 💖
 
-* [Documentation Template](https://github.com/othneildrew/Best-README-Template)
-* [G.R.O.W. Revision Method - Cajun Koi Academy](https://www.youtube.com/watch?v=N60JDe3a0IM)
+## Acknowledgments \w <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Sparkling%20Heart.png" alt="Sparkling Heart" width="25" height="25" />
 
-<p align="right"><a href="#readme-top">Jump to Top🔝</a></p>
+-   [Logo - Created by Freepik (on Flaticon)](https://www.flaticon.com/free-icon/world-book-day_4212483?term=world+book+day&page=1&position=8&origin=search&related_id=4212483)
+-   [Documentation Template](https://github.com/othneildrew/Best-README-Template)
+-   [G.R.O.W. Revision Method - Cajun Koi Academy](https://www.youtube.com/watch?v=N60JDe3a0IM)
+-   [Ali Abdaal's Spaced Repetition Article](https://aliabdaal.com/spaced-repetition/)
+-   [3D Animated Microsoft Style Emojis](https://animated-fluent-emoji.vercel.app/)
+
+<p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
