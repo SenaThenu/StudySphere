@@ -20,7 +20,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg?labelColor=003694&color=ffffff" alt="License">
   <img src="https://img.shields.io/github/contributors/SenaThenu/StudySphere?labelColor=003694&color=ffffff" alt="GitHub contributors" >
-  <img src="https://img.shields.io/badge/version-1.0.0-yellow.svg?labelColor=003694&color=ffffff" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.0.1-yellow.svg?labelColor=003694&color=ffffff" alt="Version">
   <img src="https://img.shields.io/github/stars/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Stars">
   <img src="https://img.shields.io/github/forks/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Forks">
   <img src="https://img.shields.io/github/issues/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Issues">
