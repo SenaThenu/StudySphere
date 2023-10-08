@@ -2,6 +2,9 @@
 This Python file connects all the bits of code to address user commands.
 """
 
+# TODO: Load user_settings fully
+# TODO: Add docs to settings!
+
 from termcolor import colored, cprint  # To add terminal colours
 from pyfiglet import figlet_format  # To generate ASCII art (Header!)
 
@@ -20,7 +23,7 @@ def load_global_settings():
         f.close()
         # In each setting in the json file, index 0 stores the description of the setting while index 1 holds the real value!
 
-    global API_KEY, STUDY_SPHERE_ID, END_POINT_URL, HEADERS, REP_INTERVALS, INSTRUCTIONS
+    global API_KEY, STUDY_SPHERE_ID, END_POINT_URL, HEADERS, REP_INTERVALS, INSTRUCTIONS, REP_COL_NAMES, NOTES_TITLE_COL_NAME, REVISION_COL_NAME
     
     # Necessary IDs
     API_KEY = user_settings["API_KEY"][1]
@@ -39,6 +42,11 @@ def load_global_settings():
 
     # Spaced-Repetition Variables
     REP_INTERVALS = user_settings["Rep_Intervals"][1] # A list of repetition intervals whose values are in days!
+
+    # Column Names
+    REP_COL_NAMES = user_settings["Rep_Col_Names"][1]
+    NOTES_TITLE_COL_NAME = user_settings["Notes_Title_Col_Name"][1]
+    REVISION_COL_NAME = user_settings["Revision_Col_Name"][1]
 
 # Loading global variables from user_settings
 load_global_settings()
@@ -103,11 +111,6 @@ def get_user_input(prompt: str, exit_message: str, help_message: str, validate: 
         user_input = input(prompt).strip()
         if not validate:
             break
-        elif options:
-            if user_input in options and not match_length:
-                valid_input = True
-            elif match_length and len(user_input) == len(options[0]):
-                valid_input = True
         elif user_input in EXIT_CMDS:
             valid_input = True
             print(exit_message)
@@ -116,6 +119,11 @@ def get_user_input(prompt: str, exit_message: str, help_message: str, validate: 
         elif user_input in HELP_CMDS:
             print(help_message)
             continue
+        elif options:
+            if user_input in options and not match_length:
+                valid_input = True
+            elif match_length and len(user_input) == len(options[0]):
+                valid_input = True
         elif is_int:
             try:
                 validated_input = int(user_input)
@@ -199,7 +207,27 @@ def get_valid_dict_data(raw_dict:dict, exit_message:str, help_message:str) -> di
             valid_dict[list(raw_dict.keys())[include_branch_num-1]] = raw_dict[list(raw_dict.keys())[include_branch_num-1]]
         return valid_dict
 
-def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_date:str=None, page_title_property_name: str= "Lesson", rep_col_names: list= ["Rep 1", "Rep 2", "Rep 3"], revision_col_name:str= "Revise Rep"):
+def is_sub_branched(branch_id:str, col_name:str) -> bool:
+    """
+    Given the branch ID identifies whether it is sub branched or not by checking whether a the given column exists.
+
+    Args:
+        branch_id (str): The ID of the branch
+        col_name (str): The name of the column whose existence is checked.
+
+    Returns:
+        bool: Whether the branch is sub-branched
+    """
+    branch_response = requests.get(f"{END_POINT_URL}/databases/{branch_id}", headers=HEADERS)
+    branch_data = branch_response.json()
+
+    try:
+        branch_data["properties"][col_name]
+        return False
+    except:
+        return True
+
+def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_option_num:str=None, revision_date:str=None): 
     """
     ### Adds spaced repetition intervals or revision reps to pages in a given Database!
 
@@ -207,9 +235,6 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_da
         database_id (str): ID of the database
         is_revision_rep (bool, optional): Whether the function should add revision reps (True) or spaced/normal reps (False). Defaults to False.
         revision_date (str, required if is_revision_rep=False): The date revision should be added to.
-        page_title_property_name (str, optional): The title of the primary column of the database. Defaults to "Lesson".
-        rep_col_names (list, optional): The title of the spaced repetition columns in the database. Defaults to ["Rep 1", "Rep 2", "Rep 3"].
-        revision_col_name (str, optional): The name of the revision column in the database. Defaults to "Revision Rep".
 
     Returns:
         Nothing!
@@ -238,11 +263,11 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_da
         row_data = row_response.json()
         try:
             if is_revision_rep:
-                row_data["properties"][revision_col_name]["date"] # This errors if there's no revision column
-                _append_row_id_and_name(row_id, row_data, valid_row_ids, valid_row_names, page_title_property_name)
+                row_data["properties"][REVISION_COL_NAME]["date"] # This errors if there's no revision column
+                _append_row_id_and_name(row_id, row_data, valid_row_ids, valid_row_names, NOTES_TITLE_COL_NAME)
             else:
-                if not row_data["properties"][rep_col_names[0]]["date"]:   # This becomes true if there's no date in the val_col
-                    _append_row_id_and_name(row_id, row_data, valid_row_ids, valid_row_names, page_title_property_name)
+                if not row_data["properties"][REP_COL_NAMES[0]]["date"]:   # This becomes true if there's no date in the val_col
+                    _append_row_id_and_name(row_id, row_data, valid_row_ids, valid_row_names, NOTES_TITLE_COL_NAME)
         except:
             # This is triggered when the database within the page doesn't contain repetition columns.
             # According to the official StudySphere template, such databases can be branched subjects!
@@ -262,15 +287,14 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_da
         }
 
         if is_revision_rep:
-            data["properties"][revision_col_name] = {
+            data["properties"][REVISION_COL_NAME] = {
                 "type": "date",
                 "date": {
                     "start": revision_date
                 }
             }
         else:
-            for rep_i, rep_col_name in enumerate(rep_col_names):
-                # To make this work, len(rep_col_names) must equal len(REP_INTERVALS) and they should be corresponding
+            for rep_i, rep_col_name in enumerate(REP_COL_NAMES):
                 data["properties"][rep_col_name] = {
                         "type": "date",
                         "date": {
@@ -293,17 +317,19 @@ def set_reps_for_pages(database_id: str, is_revision_rep:bool=False, revision_da
             for sub_branch_i, sub_branch_name in enumerate(sub_branched_row_names):
                 sub_branch_dict[sub_branch_name] = templates.extract_id_of_an_inline_databases(END_POINT_URL, HEADERS, sub_branched_row_ids[sub_branch_i])
             print(colored("✨ Apparently, this seems to have sub-branches! I have listed them below...", "green"))
-            set_bulk_reps(sub_branch_dict, is_revision_rep, revision_date)
+            set_bulk_reps(sub_branch_dict, revision_rep=is_revision_rep, revision_option_num=revision_option_num, global_revision_date=revision_date)
         except:
             print(colored("Skipped because of an error!", "red"))
 
-def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, global_revision_date:str=None):
+def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, revision_option_num:str=None, global_revision_date:str=None):
     """
     ### Sets up repetitions for every branch given in the branches_dict.
 
     Args:
         branches_dict (dict): A dictionary of branches with key being the branch_name and the value being the branch_id
-        revision_rep (bool): Whether reps are for revision (True) or not (False)
+        revision_rep (bool, optional): Whether reps are for revision (True) or not (False). Defaults to False.
+        revision_option_num (str, if revision_rep=False optional): The revision option the user selected
+        global_revision_date (str, if revision_rep=False optional):In case the use selected revision_option_num 2, this is the same date used to add to every branch
     """
     for i, branch in enumerate(branches_dict):
         print(colored(f"    {i+1}. {branch}", "blue", attrs=["bold"]))
@@ -320,11 +346,12 @@ def set_bulk_reps(branches_dict:dict, revision_rep:bool=False, global_revision_d
         
         if revision_rep:
             print(colored(f"🚀 Started Setting Revision to {branch}!", "blue"))
-            if global_revision_date:
-                revision_date = global_revision_date
-            else:
+            sub_branched = is_sub_branched(branch_id, REVISION_COL_NAME)
+            if revision_option_num == "1" and not sub_branched:
                 revision_date = get_user_input(colored(f"📅 Enter the revision date for {branch} (YYYY-MM-DD): ", "blue"), colored(f"😭 Sad to see you leaving while adding a Revision Date for {branch}!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)", "magenta"), options=["YYYY-MM-DD"], match_length=True)
-            set_reps_for_pages(branch_id, is_revision_rep=True, revision_date=revision_date)
+            else:
+                revision_date = global_revision_date
+            set_reps_for_pages(branch_id, is_revision_rep=True, revision_option_num=revision_option_num, revision_date=revision_date)
             print(colored(f"Ended Setting Revision to {branch}!", "blue"))
         else:
             print(colored(f"🚀 Started Adding Repetitions to {branch}!", "blue"))
@@ -381,10 +408,10 @@ def main():
                 continue
             # By this point, the option can only be 1 or 2...
             if option == "1":
-                set_bulk_reps(main_branches_dict, True)
+                set_bulk_reps(main_branches_dict, revision_rep=True, revision_option_num=option)
             else:
                 revision_date = get_user_input(colored("Before I show you those cool branches, please enter your desired revision date (YYYY-MM-DD): ", "blue"), colored("😭 Sad to see you leave in the middle of setting up revision dates!", "red"), colored("Just enter the date in the format YYYY-MM-DD! (e.g. 2077-05-09)"), options=["YYYY-MM-DD"], match_length=True)
-                set_bulk_reps(main_branches_dict, True, revision_date)
+                set_bulk_reps(main_branches_dict, revision_rep=True, revision_option_num=option, global_revision_date=revision_date)
         elif bulk_match_user_response(command, SETTINGS_CMDS):
             all_settings_modified = False
             
