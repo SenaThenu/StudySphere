@@ -123,6 +123,21 @@ Yet, as a community, especially during this Hacktoberfest, we can extend it furt
 
 <p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
+#### User Settings
+| Setting | Description | Default |
+| ------- | :-: | :---: |
+| API_KEY |  Your API Key. Watch the above video for help! | Nothing :O |
+| StudySphere_ID | The Database ID of the StudySphere. | Nothing :O |
+| Instructions | Whether instructions should be displayed or not. | True |
+| Rep_Col_Names | A name list of all columns which store spaced repetition dates. | Rep 1, Rep 2, Rep 3 |
+| Rep_Intervals | A list of Spaced Repetition intervals in days. | 7, 21, 60 |
+| Notes_Title_Col_Name | The column name which stores the names of notes stored in a branch! | Lesson |
+| Revision_Col_Name | Name of the column which stores revision dates! | Revise Rep |
+
+> [!Note]
+> You don't have to deal with Col_Names as long as you stick to the template :)
+
+
 <!-- ROADMAP -->
 
 ## Roadmap <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/World%20Map.png" alt="World Map" width="25" height="25" />

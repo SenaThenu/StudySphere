@@ -2,9 +2,6 @@
 This Python file connects all the bits of code to address user commands.
 """
 
-# TODO: Load user_settings fully
-# TODO: Add docs to settings!
-
 from termcolor import colored, cprint  # To add terminal colours
 from pyfiglet import figlet_format  # To generate ASCII art (Header!)
 
