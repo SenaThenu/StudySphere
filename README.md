@@ -20,7 +20,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/license-MIT-blue.svg?labelColor=003694&color=ffffff" alt="License">
   <img src="https://img.shields.io/github/contributors/SenaThenu/StudySphere?labelColor=003694&color=ffffff" alt="GitHub contributors" >
-  <img src="https://img.shields.io/badge/version-0.0.1-yellow.svg?labelColor=003694&color=ffffff" alt="Version">
+  <img src="https://img.shields.io/badge/version-1  .0.0-yellow.svg?labelColor=003694&color=ffffff" alt="Version">
   <img src="https://img.shields.io/github/stars/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Stars">
   <img src="https://img.shields.io/github/forks/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Forks">
   <img src="https://img.shields.io/github/issues/SenaThenu/StudySphere.svg?labelColor=003694&color=ffffff" alt="Issues">
@@ -122,6 +122,21 @@ _Note: this is just what it is capable of currently..._
 Yet, as a community, especially during this Hacktoberfest, we can extend it further. We all (including you) power up this! So, why are you waiting? Go ahead... It's okay to make mistakes. We all are learning _forever!_
 
 <p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
+
+#### User Settings
+| Setting | Description | Default |
+| ------- | :-: | :---: |
+| API_KEY |  Your API Key. Watch the above video for help! | Nothing :O |
+| StudySphere_ID | The Database ID of the StudySphere. | Nothing :O |
+| Instructions | Whether instructions should be displayed or not. | True |
+| Rep_Col_Names | A name list of all columns which store spaced repetition dates. | Rep 1, Rep 2, Rep 3 |
+| Rep_Intervals | A list of Spaced Repetition intervals in days. | 7, 21, 60 |
+| Notes_Title_Col_Name | The column name which stores the names of notes stored in a branch! | Lesson |
+| Revision_Col_Name | Name of the column which stores revision dates! | Revise Rep |
+
+> [!Note]
+> You don't have to deal with Col_Names as long as you stick to the template :)
+
 
 <!-- ROADMAP -->
 
