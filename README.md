@@ -93,8 +93,7 @@ To get started, download the code using any of the methods as shown below. (To g
 
 Then, follow the instructions of the following video...
 
-https://github.com/SenaThenu/StudySphere/assets/98274844/478c2639-16fa-459d-aa04-a9514cb431bd
-
+https://github.com/SenaThenu/StudySphere/assets/98274844/ba3ff31b-cd75-4348-a456-2fa6089cdecb
 
 <p align="right"><a href="#readme-top">Jump to Top<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand gestures/Index Pointing Up.png" alt="Pointing Up" width="25" height="25" /></a></p>
 
