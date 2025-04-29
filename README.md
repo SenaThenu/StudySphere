@@ -28,7 +28,7 @@
 
 <!-- Access to the Notion Template -->
 <p align="center">
-  <a href="https://senathenu.notion.site/2428547d9c0f45c48fa0b4018fec3e54?v=92e0d0c8a4c44bd7ba1acd1d67b7b1d0&pvs=4">
+  <a href="https://slicky.notion.site/1e47d591140f81d4b788f742300dab8f?v=1e47d591140f814aabec000c3fc31d14&pvs=4">
       <img src="https://img.shields.io/badge/Duplicate-The_Notion_Template-b8c7d6?&logo=notion&labelColor=003694&color=ffffff" alt="Download StudySphere Template">
   </a>
 </p>
